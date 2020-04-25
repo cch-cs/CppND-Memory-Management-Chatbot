@@ -11,7 +11,6 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    //delete _chatBot; // warm-up bug commented
 
     ////
     //// EOF STUDENT CODE
@@ -26,12 +25,7 @@ void GraphNode::AddEdgeToParentNode(GraphEdge *edge)
 {
     _parentEdges.push_back(edge);
 }
-/*
-void GraphNode::AddEdgeToChildNode(GraphEdge *edge)
-{
-    _childEdges.push_back(edge);
-}
-*/
+
 void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge)
 {
     _childEdges.emplace_back(std::move(edge));
@@ -48,7 +42,6 @@ void GraphNode::MoveChatbotHere(ChatBot chatbot)
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
     newNode->MoveChatbotHere(std::move(_chatBot));
-    //_chatBot = nullptr; // invalidate pointer at source
 }
 ////
 //// EOF STUDENT CODE
