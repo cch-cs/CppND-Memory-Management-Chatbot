@@ -50,7 +50,9 @@ ChatBot::ChatBot(ChatBot const &source)
     _image = new wxBitmap(*source._image);
     _image = source._image;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
 }
 
 ChatBot &ChatBot::operator=(ChatBot const &source)
@@ -61,7 +63,9 @@ ChatBot &ChatBot::operator=(ChatBot const &source)
     _image = new wxBitmap(*source._image);
     _image = source._image;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
     return *this;
 }
 ChatBot::ChatBot(ChatBot &&source)
@@ -69,10 +73,13 @@ ChatBot::ChatBot(ChatBot &&source)
     std::cout << "ChatBot move Constructor" << std::endl;
     _image = source._image;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
     source._image = NULL;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
+    source._currentNode = nullptr;
 }
 
 ChatBot &ChatBot::operator=(ChatBot &&source)
@@ -82,10 +89,13 @@ ChatBot &ChatBot::operator=(ChatBot &&source)
         return *this;
     _image = source._image;
     _chatLogic = source._chatLogic;
+    _chatLogic->SetChatbotHandle(this);
     _rootNode = source._rootNode;
+    _currentNode = source._currentNode;
     source._image = NULL;
     source._chatLogic = nullptr;
     source._rootNode = nullptr;
+    source._currentNode = nullptr;
 }
 ////
 //// EOF STUDENT CODE
